@@ -1,1 +1,42 @@
-<p>login-page works!</p>
+<div class="wrapper-login-form d-flex d-all-center">
+
+
+    <div class="login-form">
+        <div class="d-flex d-all-center">
+            <i class="logo-icon uil uil-apps"></i>
+        </div>
+    
+        <div class="text-label d-flex d-all-center">
+            Iniciar sesión
+        </div>
+
+        <pre>
+            {{loginForm.value |json}}
+        </pre>
+
+        <form [formGroup]="loginForm" (submit)="sendCredentials()" class="form d-flex">
+            <div class="form-input">
+                <input formControlName="email" 
+                type="text" placeholder="Introduzca el correo electrónico">
+            </div>
+            <div class="form-input">
+                <input formControlName="password" 
+                type="password" placeholder="Introduzca la contraseña">
+            </div>
+            <div class="form-input">
+                <button [disabled]="loginForm.invalid" class="btn-primary">Iniciar sesión</button>
+            </div>
+            <div>o</div>
+            <div class="form-input">
+                <button class="btn-default"><i class="uil uil-google"></i> Continuar con Google</button>
+            </div>
+            <div class="form-input">
+                <button class="btn-default"><i class="uil uil-windows"></i> Continuar con Microsoft</button>
+            </div>
+            <div class="form-input">
+                <button  class="btn-default"><i class="uil uil-apple"></i> Continuar con Apple</button>
+            </div>
+        </form>
+    </div>
+
+        <!-- <app-register-form></app-register-form> -->
