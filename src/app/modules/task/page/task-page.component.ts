@@ -7,6 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskPageComponent implements OnInit {
 
+  listUser:Array<{id:string, name:string}>=[
+    {
+      id:'1',
+      name:'Alan'
+    },
+    {
+      id:'2',
+      name:'Leifer'
+    },
+    {
+      id:'3',
+      name:'Maria'
+    }
+  ]
+
   constructor() { }
 
   ngOnInit(): void {

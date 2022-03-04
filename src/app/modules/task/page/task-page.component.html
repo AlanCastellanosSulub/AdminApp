@@ -1,1 +1,14 @@
-<p>task-page works!</p>
+<app-header></app-header>
+
+<ul>
+    <li *ngFor="let user of listUser">
+        <ng-container *ngTemplateOutlet="tplHello;context:{currentUser:user}">
+        </ng-container>
+    </li>
+</ul>
+
+
+
+<ng-template #tplHello let-myuser="currentUser">
+    Hola buenos dias {{myuser?.name}}
+</ng-template>
