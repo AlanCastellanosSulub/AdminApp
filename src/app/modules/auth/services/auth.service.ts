@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { CookieService } from 'ngx-cookie';
 import { Observable, of } from 'rxjs';
-import { map, delay } from 'rxjs/operators';
+import { map, delay, tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,24 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private URL = environment.api;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private cookieService:CookieService) { }
 
   submitLogin(credentials:{email:string,password:string}): Observable<any> {
-    return this.httpClient.post('${this.URL}/auth/login',credentials)
+    return this.httpClient.post(
+      '${this.URL}/auth/login',
+      credentials
+      ).pipe(
+        tap((stream:any)=>{
+          const {tokenSession}=stream;
+          this.cookieService.put('token_session',tokenSession,{
+            path:'/'
+          })
+        }),
+        catchError(()=> {
+          console.log('Algo Ocurrio?? fijate')
+          return of([])
+        })
+      )
   }
 
   uniqueEmailValidator(): AsyncValidatorFn {
