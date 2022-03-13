@@ -7,109 +7,29 @@ import { TaskService } from '../services/task.service';
   templateUrl: './task-page.component.html',
   styleUrls: ['./task-page.component.css']
 })
-export class TaskPageComponent implements OnInit,OnDestroy {
+export class TaskPageComponent implements OnInit, OnDestroy {
 
-  groups:Array<any> = [];
-  listaObservables$:Array<Subscription>=[];
+  groups: Array<any> = [];
+  groups$ = this.taskService.getTask();
+  listaObservables$: Array<Subscription> = [];
 
-  
 
-  constructor(private taskService:TaskService) { }
+
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
 
-    this.taskService.getTask()
-    .subscribe((response)=>{
-      console.log(response)
-    })
-
-    const observer1$ =interval(1000).subscribe((res)=>{
-      console.log('ZwZ Llamando')
-    })
-
-    this.listaObservables$=[observer1$];
-
-    /*this.groups = [
-      {
-        label: 'Nuevas Tareas',
-        color: 'green',
-        list: [
-          {
-            order: 'Como instalar Angular',
-            items: [
-              {
-                key:'price',
-                value: 152
-              },
-              {
-                key:'time',
-                value: 152
-              },
-              {
-                key:'author',
-                value: {
-                  name: 'Leifer Mendez',
-                  avatar: ''
-                }  
-              }
-            ]
-          },
-          {
-            order: 'Instalar Node',
-            items: [
-              {
-                key:'price',
-                value: 152
-              },
-              {
-                key:'time',
-                value: 152
-              },
-              {
-                key:'author',
-                value: {
-                  name: 'Leifer Mendez',
-                  avatar: ''
-                }  
-              }
-            ]
-          }
-        ]
-      },
-      {
-        label: 'Trabajando',
-        color: 'green',
-        list: [
-          {
-            order: 'Como instalar Angular',
-            items: [
-              {
-                key:'price',
-                value: 152
-              },
-              {
-                key:'time',
-                value: 152
-              },
-              {
-                key:'author',
-                value: {
-                  name: 'Leifer Mendez',
-                  avatar: ''
-                }  
-              }
-            ]
-          }
-        ]
-      }
-    ]*/
-
-    //console.log(this.groups)
+    /*this.taskService.getTask()
+      .subscribe((response) => {
+        const { data } = response;
+        this.groups = data;
+        console.log(response)
+      })*/
   }
 
   ngOnDestroy(): void {
     console.log('Me voy a destruir')
-    this.listaObservables$.forEach((subscriptions)=>subscriptions.unsubscribe())
+    this.listaObservables$.forEach((subscriptions) => subscriptions.unsubscribe())
   }
 
 }
