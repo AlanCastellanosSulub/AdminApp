@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  googleMapsKey:'1111',
+  api:'https://radiant-gorge-71350.herokuapp.com/api/1.0'
 };
 
 /*

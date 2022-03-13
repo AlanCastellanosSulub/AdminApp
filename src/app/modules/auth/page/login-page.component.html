@@ -10,10 +10,6 @@
             Iniciar sesión
         </div>
 
-        <pre>
-            {{loginForm.value |json}}
-        </pre>
-
         <form [formGroup]="loginForm" (submit)="sendCredentials()" class="form d-flex">
             <div class="form-input">
                 <input formControlName="email" 
