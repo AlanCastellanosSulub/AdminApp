@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-task-page',
@@ -13,9 +14,14 @@ export class TaskPageComponent implements OnInit,OnDestroy {
 
   
 
-  constructor() { }
+  constructor(private taskService:TaskService) { }
 
   ngOnInit(): void {
+
+    this.taskService.getTask()
+    .subscribe((response)=>{
+      console.log(response)
+    })
 
     const observer1$ =interval(1000).subscribe((res)=>{
       console.log('ZwZ Llamando')
@@ -23,7 +29,7 @@ export class TaskPageComponent implements OnInit,OnDestroy {
 
     this.listaObservables$=[observer1$];
 
-    this.groups = [
+    /*this.groups = [
       {
         label: 'Nuevas Tareas',
         color: 'green',
@@ -96,7 +102,7 @@ export class TaskPageComponent implements OnInit,OnDestroy {
           }
         ]
       }
-    ]
+    ]*/
 
     //console.log(this.groups)
   }
