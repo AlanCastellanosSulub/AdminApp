@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '@shared/shared.module';
 import { ColumnComponent } from './components/column/column.component';
 import { CardComponent } from './components/card/card.component';
+import { NewTaskComponent } from './components/new-task/new-task.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { CardComponent } from './components/card/card.component';
     TaskPageComponent,
     HeaderComponent,
     ColumnComponent,
-    CardComponent
+    CardComponent,
+    NewTaskComponent
   ],
   imports: [
     CommonModule,
