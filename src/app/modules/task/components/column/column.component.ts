@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ColumnService } from '@modules/task/services/column.service';
 import { NewTaskService } from '@modules/task/services/new-task.service';
 
 @Component({
@@ -11,11 +12,19 @@ export class ColumnComponent implements OnInit{
   @Input() name!:string;
   @Input() id:string;
 
-  constructor(private newTaskService:NewTaskService) { }
+  constructor(private newTaskService:NewTaskService, private columnService:ColumnService) { }
 
 
   ngOnInit(): void {
     //console.log(this.data)
+    this.columnService.reloadColumn$
+    .subscribe((response) => {
+      if(response && response?.data?._id === this.id){
+        const {data} = response;
+        this.data = data.list
+        console.log('--->',response)
+      }
+    })
   }
 
   addTask():void{
