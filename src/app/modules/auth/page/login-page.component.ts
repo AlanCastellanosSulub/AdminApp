@@ -12,23 +12,23 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  loginForm:FormGroup =new FormGroup({});
+  loginForm: FormGroup = new FormGroup({});
 
-  constructor(private authService:AuthService, private router:Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.loginForm =new FormGroup({
-      email:new FormControl('',[Validators.required,Validators.email]),
-      password:new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(12)])
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(12)])
     })
   }
 
-  sendCredentials():void{
+  sendCredentials(): void {
     const body = this.loginForm.value;
     this.authService.submitLogin(body)
-    .subscribe((response)=>{
-     this.router.navigate(['/','task'])
-    })
+      .subscribe((response) => {
+        this.router.navigate(['/', 'task'])
+      })
     console.log(body);
   }
 

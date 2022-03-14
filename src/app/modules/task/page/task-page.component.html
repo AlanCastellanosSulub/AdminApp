@@ -3,6 +3,7 @@
     <app-column  
     [data]="group.list"
     [name]="group.label" 
+    [id]="group._id"
     *ngFor="let group of (groups$ | async)?.data">
     </app-column>
 </div>

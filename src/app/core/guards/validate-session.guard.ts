@@ -30,14 +30,6 @@ export class ValidateSessionGuard implements CanActivate {
     }
 
     return true;
-
-    /*if(this.cookie !==null){
-      return true;
-    }
-    else{
-      this.router.navigate(['/','auth','login'])
-      return false;
-    }*/
   }
   
 }

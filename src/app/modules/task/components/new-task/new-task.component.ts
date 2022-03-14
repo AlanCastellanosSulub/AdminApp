@@ -52,7 +52,12 @@ export class NewTaskComponent implements OnInit {
 
 
   saveTask():void{
-    console.log(this.newTask.value)
+    const body =  this.newTask.value
+    this.newTaskService.saveTask(body)
+    .subscribe((response) => {
+      this.newTaskService.setShow(false)
+      console.log('La tarea se guardo!!!')
+    })
   }
 
   cancel():void{

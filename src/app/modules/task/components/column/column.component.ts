@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NewTaskService } from '@modules/task/services/new-task.service';
 
 @Component({
   selector: 'app-column',
@@ -8,12 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ColumnComponent implements OnInit{
   @Input() data:Array<any>=[];
   @Input() name!:string;
+  @Input() id:string;
 
-  constructor() { }
+  constructor(private newTaskService:NewTaskService) { }
 
 
   ngOnInit(): void {
     //console.log(this.data)
+  }
+
+  addTask():void{
+    this.newTaskService.setShow(true,this.id)
   }
 
 }
