@@ -15,8 +15,8 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient, private cookieService:CookieService) { }
 
-  submitLogin(credentials:{email:string,password:string}): Observable<any> {
-    return this.httpClient.post(
+  submitLogin(credentials:{email:string, password:string}):Observable<any> {
+   return this.httpClient.post(
      `${this.URL}/auth/login`,
      credentials)
      .pipe(

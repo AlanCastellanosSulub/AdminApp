@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   googleMapsKey:'1111',
-  api:'http://localhost:3000/api/1.0'
+  api:'https://murmuring-crag-93579.herokuapp.com/api/1.0'
 };
 
 /*
